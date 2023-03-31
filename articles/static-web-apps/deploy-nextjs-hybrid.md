@@ -29,7 +29,7 @@ In this tutorial, you learn to deploy a [Next.js](https://nextjs.org) website to
 
 To begin, create a new repository under your GitHub account from a template repository.
 
-1. Go to [https://github.com/staticwebdev/next12-starter-ts/generate](https://github.com/login?return_to=/staticwebdev/next12-starter-ts/generate)
+1. Go to [https://github.com/sulabh-msft/next12-starter-ts/generate](https://github.com/login?return_to=/sulabh-msft/next12-starter-ts/generate)
 1. Name the repository **next12-starter-ts**
 1. Next, clone the new repo to your machine. Make sure to replace `<YOUR_GITHUB_ACCOUNT_NAME>` with your account name.
 
