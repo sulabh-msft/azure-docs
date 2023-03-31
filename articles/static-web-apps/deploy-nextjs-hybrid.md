@@ -196,6 +196,7 @@ Begin by adding an API route.
             .then(res => res.json())
             .then(json => setTime(new Date(json.time)));
         }, []);
+
         return (
             <div className={styles.container}>
                 <Head>
