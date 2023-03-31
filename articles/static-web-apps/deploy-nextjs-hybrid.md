@@ -138,7 +138,7 @@ To insert data server-rendered data to a Next.js page, you need to first export 
 
     ```ts
     export async function getServerSideProps() {
-      return { props: { datetime: new Date().toISOString() } };
+      return { props: { dateTime: new Date().toISOString() } };
     }
 
     ```
@@ -146,11 +146,9 @@ To insert data server-rendered data to a Next.js page, you need to first export 
 1. Update the `Home` component to receive the server-rendered data.
 
     ```ts
-    import type { InferGetServerSidePropsType } from 'next';
+    export default function Home ({ dateTime }: { dateTime: string } ) {
 
-    export default function Home ({ datetime } : InferGetServerSidePropsType<typeof getServerSideProps>) {
-
-        return (
+       return (
             <div className={styles.container}>
                 <Head>
                     <title>Create Next App</title>
@@ -189,10 +187,9 @@ Begin by adding an API route.
 1. Open _pages/index.ts_ to add a call to the API, and display the result.
 
     ```ts
-    import type { InferGetServerSidePropsType } from 'next';
     import { useEffect, useState } from 'react';
 
-    export default function Home ({ datetime } : InferGetServerSidePropsType<typeof getServerSideProps>) {
+    export default function Home () {
         const [time, setTime] = useState<Date | null>(null);
         useEffect(() => {
             fetch('/api/time')
