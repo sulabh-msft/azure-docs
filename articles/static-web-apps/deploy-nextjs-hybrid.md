@@ -26,31 +26,38 @@ In this tutorial, you learn to deploy a [Next.js](https://nextjs.org) website to
 
 ## Set up a Next.js app
 
-Begin by initializing a new Next.js application.
 
-1. Initialize the application using `npm init`. If you are prompted to install `create-next-app`, say yes.
+To begin, create a new repository under your GitHub account from a template repository.
 
-    ```bash
-    npm init next-app@latest --typescript
-    ```
-
-1. When prompted for an app name, enter **nextjs-app**.
-
-1. Navigate to the folder containing the new app:
+1. Go to [https://github.com/staticwebdev/next12-starter-ts/generate](https://github.com/login?return_to=/staticwebdev/next12-starter-ts/generate)
+1. Name the repository **next12-starter-ts**
+1. Next, clone the new repo to your machine. Make sure to replace `<YOUR_GITHUB_ACCOUNT_NAME>` with your account name.
 
     ```bash
-    cd nextjs-app
+    git clone http://github.com/<YOUR_GITHUB_ACCOUNT_NAME>/next12-starter-ts
     ```
 
-1. Start Next.js app in development:
+1. Go to the newly cloned Next.js app.
+
+   ```bash
+   cd next12-starter-ts
+   ```
+
+1. Install dependencies.
+
+    ```bash
+    npm install
+    ```
+
+1. Start Next.js app in development.
 
     ```bash
     npm run dev
     ```
 
-    Navigate to `http://localhost:3000` to open the app, where you should see the following website open in your browser:
+Navigate to `http://localhost:3000` to open the app, where you should see the following website open in your browser:
 
-    :::image type="content" source="media/deploy-nextjs/nextjs-hybrid-starter.png" alt-text="Screenshot of a Next.js app running in the browser.":::
+:::image type="content" source="media/deploy-nextjs/nextjs-hybrid-starter.png" alt-text="Screenshot of a Next.js app running in the browser.":::
 
 1. Stop the development server by pressing **CMD/CTRL + C**.
 
@@ -131,16 +138,17 @@ To insert data server-rendered data to a Next.js page, you need to first export 
 
     ```ts
     export async function getServerSideProps() {
-        const data = JSON.stringify({ time: new Date() });
-        return { props: { data } };
+      return { props: { datetime: new Date().toISOString() } };
     }
+
     ```
 
 1. Update the `Home` component to receive the server-rendered data.
 
     ```ts
-    export default function Home({ data }: { data: { time: string } }) {
-        const serverData = JSON.parse(data);
+    import type { InferGetServerSidePropsType } from 'next';
+
+    export default function Home ({ datetime } : InferGetServerSidePropsType<typeof getServerSideProps>) {
 
         return (
             <div className={styles.container}>
@@ -152,7 +160,7 @@ To insert data server-rendered data to a Next.js page, you need to first export 
 
                 <main className={styles.main}>
                     <h1 className={styles.title}>
-                        Welcome to <a href="https://nextjs.org">Next.js! The time is {serverData.time}</a>
+                        Welcome to <a href="https://nextjs.org">Next.js! The time is {dateTime}</a>
                     </h1>
                 // snip
     ```
@@ -181,7 +189,10 @@ Begin by adding an API route.
 1. Open _pages/index.ts_ to add a call to the API, and display the result.
 
     ```ts
-    export default function Home({ data }: { data: { time: string } }) {
+    import type { InferGetServerSidePropsType } from 'next';
+    import { useEffect, useState } from 'react';
+
+    export default function Home ({ datetime } : InferGetServerSidePropsType<typeof getServerSideProps>) {
         const [time, setTime] = useState<Date | null>(null);
         useEffect(() => {
             fetch('/api/time')
