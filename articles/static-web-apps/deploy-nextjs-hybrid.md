@@ -26,21 +26,20 @@ In this tutorial, you learn to deploy a [Next.js](https://nextjs.org) website to
 
 ## Set up a Next.js app
 
-
 To begin, create a new repository under your GitHub account from a template repository.
 
-1. Go to [https://github.com/sulabh-msft/next12-starter-ts/generate](https://github.com/login?return_to=/sulabh-msft/next12-starter-ts/generate)
-1. Name the repository **next12-starter-ts**
+1. Go to [https://github.com/sulabh-msft/nextjs-starter-app/generate](https://github.com/login?return_to=/sulabh-msft/nextjs-starter-app/generate)
+1. Name the repository **nextjs-app**
 1. Next, clone the new repo to your machine. Make sure to replace `<YOUR_GITHUB_ACCOUNT_NAME>` with your account name.
 
     ```bash
-    git clone http://github.com/<YOUR_GITHUB_ACCOUNT_NAME>/next12-starter-ts
+    git clone http://github.com/<YOUR_GITHUB_ACCOUNT_NAME>/nextjs-app
     ```
 
 1. Go to the newly cloned Next.js app.
 
    ```bash
-   cd next12-starter-ts
+   cd nextjs-app
    ```
 
 1. Install dependencies.
@@ -64,25 +63,6 @@ Navigate to `http://localhost:3000` to open the app, where you should see the fo
 ## Deploy your static website
 
 The following steps show how to link your app to Azure Static Web Apps. Once in Azure, you can deploy the application to a production environment.
-
-### Create a GitHub repo
-
-Before deploying to Azure, you'll need to create a GitHub repo and push the application up.
-
-1. Navigate to [https://github.com/new](https://github.com/new) and name it **nextjs-app**.
-1. From the terminal on your machine, initialize a local git repo and commit your changes using the following command.
-
-    ```bash
-    git init && git add -A && git commit -m "initial commit"
-    ```
-
-1. Add your repo as a remote and push your changes to the server.
-
-    ```bash
-    git remote add origin https://github.com/<YOUR_GITHUB_USERNAME>/nextjs-app && git push -u origin main
-    ```
-
-    As you run this command, make sure to replace `<YOUR_GITHUB_USERNAME>` with your GitHub user name.
 
 [!INCLUDE [create a static web app initial steps](../../includes/static-web-apps/create-a-static-web-app.md)]
 
